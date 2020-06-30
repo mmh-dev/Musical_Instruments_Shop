@@ -172,10 +172,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(MainActivity.this, OrderActivity.class);
             if (!orderList.isEmpty()){
                 intent.putExtra("orders", (Serializable) orderList);
+                intent.putExtra("status", 1);
+            }
+            else {
+                intent.putExtra("status", 0);
             }
             startActivity(intent);
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
