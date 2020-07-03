@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        orderList.clear();
+
         // Variable initialization for spinner
         quantityField = findViewById(R.id.quantityField);
         minusBtn = findViewById(R.id.minusBtn);
@@ -126,14 +128,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             order.setItemName(spinner.getSelectedItem().toString());
             order.setPrice(Double.parseDouble(priceView.getText().toString()));
             order.setQuantity(Integer.parseInt(quantityField.getText().toString()));
-            orderList.add(order);
-
-            Toast.makeText(MainActivity.this, "Item has been added to the shopping cart!", Toast.LENGTH_SHORT).show();
-            Log.i(TAG, order.toString());
+            if (isAdded(orderList, order)){
+                Toast.makeText(MainActivity.this, "Item is already in the the shopping cart!", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                orderList.add(order);
+                Toast.makeText(MainActivity.this, "Item added to the shopping cart!", Toast.LENGTH_SHORT).show();
+            }
         }
         else {
             Toast.makeText(MainActivity.this, "Please, fill in all fields!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public boolean isAdded(List<Order> orderList, Order order){
+        for (Order o: orderList) {
+            if (o.getItemName().equals(order.getItemName())){
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
