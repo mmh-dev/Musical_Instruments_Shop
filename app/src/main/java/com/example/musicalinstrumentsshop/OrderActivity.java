@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ public class OrderActivity extends AppCompatActivity {
     ListView listView;
     TextView emptyCart;
     Button proceed;
+    ImageButton removeBtn;
     private int status;
     String[] addresses = {"mmh@mail.ru, murod.hodjaev@gmail.com"};
     String subject = "Musical Instruments Shop order details";
@@ -36,6 +38,7 @@ public class OrderActivity extends AppCompatActivity {
         listView = findViewById(R.id.listView);
         emptyCart = findViewById(R.id.emptyCart);
         proceed = findViewById(R.id.proceed);
+        removeBtn = findViewById(R.id.removeBtn);
 
         // creating custom adapter
         ActionBar actionBar = getSupportActionBar();
